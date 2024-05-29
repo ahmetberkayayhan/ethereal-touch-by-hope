@@ -31,13 +31,10 @@ class Character:
         if self.smartness < 0:
             self.smartness = 0
 
-        print(f"Money decreased by {abs(money_change)}, Health decreased by {abs(health_change)}, Smartness decreased by {abs(smartness_change)}")
-
-
-
     def get_job(self):
         jobs = [
-            {"name": "Engineer", "salary": 5000, "satisfaction": 10, "improvement": 5, "intensity": 10, "reputation": 5},
+            {"name": "Engineer", "salary": 5000, "satisfaction": 10, "improvement": 5, "intensity": 10,
+             "reputation": 5},
             {"name": "Doctor", "salary": 7000, "satisfaction": 8, "improvement": 10, "intensity": 15, "reputation": 10},
             {"name": "Teacher", "salary": 4000, "satisfaction": 12, "improvement": 7, "intensity": 8, "reputation": 6}
             # You can add more jobs here
@@ -54,7 +51,7 @@ class Character:
 
     def ask_for_raise(self):
         if self.job:
-            success_chance = self.smartness + (100 - self.job['intensity'])
+            success_chance = self.smartness + (self.job['intensity'])
             if random.randint(0, 100) < success_chance:
                 self.job['salary'] += 1000
                 print("You got a raise!")
@@ -97,19 +94,21 @@ class Character:
 
     def show_stats(self):
         print(
-            f"Health: {self.health}, Money: {self.money}, Smartness: {self.smartness}, Charisma: {self.charisma}, Happiness: {self.happiness}")
+            f"Health: {self.health}, Money: {self.money}, Smartness: {self.smartness}, Charisma: {self.charisma}, "
+            f"Happiness: {self.happiness}")
 
 
 def main():
     character = Character()
 
-    while character.age < 100:  # The duration or end of the game can be determined
+    while character.age < 100 & character.health > 0:  # The duration or end of the game can be determined
         character.age_up()
         character.show_stats()
 
         # Ask the user to choose multiple actions
         print(
-            "Actions: 1- Get a job, 2- Quit job, 3- Ask for raise, 4- Work hard, 5- Work less, 6- Exercise, 7- Play games, 8- Study")
+            "Actions: 1- Get a job, 2- Quit job, 3- Ask for raise, 4- Work hard, 5- Work less, 6- Exercise, "
+            "7- Play games, 8- Study")
         actions = input("Choose your actions (separated by commas): ").split(',')
 
         for action in actions:
