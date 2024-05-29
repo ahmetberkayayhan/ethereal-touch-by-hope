@@ -14,6 +14,26 @@ class Character:
     def age_up(self):
         self.age += 1
         print(f"Age: {self.age}")
+        # Apply random changes to main stats
+        money_change = random.randint(-200, -50)
+        health_change = random.randint(-5, -1)
+        smartness_change = random.randint(-5, -2)
+
+        self.money += money_change
+        self.health += health_change
+        self.smartness += smartness_change
+
+        # Ensure that stats do not drop below zero
+        if self.money < 0:
+            self.money = 0
+        if self.health < 0:
+            self.health = 0
+        if self.smartness < 0:
+            self.smartness = 0
+
+        print(f"Money decreased by {abs(money_change)}, Health decreased by {abs(health_change)}, Smartness decreased by {abs(smartness_change)}")
+
+
 
     def get_job(self):
         jobs = [
@@ -59,13 +79,13 @@ class Character:
 
     def exercise(self):
         self.money -= 50
-        self.health += 10
-        self.charisma += 5
+        self.health += 3
+        self.charisma += 1
         print("You exercised.")
 
     def play_games(self):
         self.money -= 30
-        self.health -= 5
+        self.health -= 2
         self.happiness += 10
         print("You played games.")
 
